@@ -12,7 +12,7 @@ Once done this, one could observe the vehaviour of the robot in the environment,
 goal once it is reached.
 
 ## Relational graph
-![relational graph] (images/Graph.png)
+! [relational graph] (images/Graph.png)
 
 ## Nodes
 There are two nodes as stated before:
