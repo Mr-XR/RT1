@@ -1,0 +1,65 @@
+The assignment requires controlling a holonomic robot in a 2d space with a simple 2d simulator, Stage. The simulator can be launched by executing the command\+:
+
+
+\begin{DoxyCode}
+1 rosrun stage\_ros stageros $(rospack find assignment1)/world/exercise.world
+\end{DoxyCode}
+
+
+\subsubsection*{The following behaviour should be achieved}
+
+
+\begin{DoxyItemize}
+\item 1. The robot asks for a random target, with both coordinates in the interval (-\/6.\+0, 6.\+0).
+\item 2. The robot reaches the target.
+\item 3. Go to step 1.
+\end{DoxyItemize}
+
+\subsubsection*{Consider the following requirements}
+
+
+\begin{DoxyItemize}
+\item A new R\+OS packages should be created.
+\item Two processes (R\+OS nodes) should be developed.
+\item You may use cpp or python for writing your code.
+\item The first process will be in charge of\+:
+\begin{DoxyItemize}
+\item calling a service for receiving a random target;
+\item making the robot reach the target.
+\end{DoxyItemize}
+\item The second process will act as a Service Server, by replying to the client with a random target, having x and y in the interval (-\/6.\+0, 6.\+0).
+\item A target is considered reached when the distance between the robot and the target is below 0.\+1.
+\end{DoxyItemize}
+
+\subsubsection*{Some hints}
+
+
+\begin{DoxyItemize}
+\item The first node should implement a R\+OS publisher (cmd\+\_\+vel, for setting the robot speed), a R\+OS subscriber (odom, for knowing the actual robot position) and a R\+OS client (for receiving the random target)
+\item The second node should implement a R\+OS server (for setting the random target)
+\item The position of the robot is given in the topic {\bfseries odom}, by using a {\bfseries nav\+\_\+msgs/\+Odometry} (Odometry message defined in the package nav\+\_\+msgs) message. This means that the x and y position of the robot may be retrieved by reading the pose.\+pose.\+position.\+x and pose.\+pose.\+position.\+y fields of the message received by the callback associated with the subscriber.
+\item For the robot control, at first, check if the position has been reached. If yes, you should call the service to retrieve the new target position. If not, you should set {\bfseries cmd\+\_\+vel} (a {\bfseries geometry\+\_\+msgs/\+Twist} message) depending on the difference between the target (xt) and the robot position (x) (e.\+g., vel\+\_\+x = k$\ast$ (xt -\/ x))
+\end{DoxyItemize}
+
+\subsubsection*{How to submit the assignment\+:}
+
+
+\begin{DoxyItemize}
+\item The link of a github repository containing the developed R\+OS package should be given;
+\item The repo should have a \hyperlink{_r_e_a_d_m_e_8md}{R\+E\+A\+D\+M\+E.\+md} file with\+:
+\begin{DoxyItemize}
+\item Description of the content of the package (nodes, custom messages or services (if any)).
+\item Computational graph of the system (how do nodes communicate? You may use rqt\+\_\+graph).
+\item Instructions about how to run the code.
+\end{DoxyItemize}
+\item Functions and source files should be documented (optional\+: you can create a docs folder with Doxy\+Gen documentation).
+\end{DoxyItemize}
+
+\subsubsection*{Deadline}
+
+A soft deadline is set to the 25th November and the next Research Track class will be on November 26th. This means that\+:
+\begin{DoxyItemize}
+\item You can actually submit your assignment at any time, however 10 days before the oral discussion.
+\item I strongly advise you to start working on the assignment in the next weeks. Indeed, in the last 9 hours of the course, we are going to work on more complex robotic simulations, which require a good knowledge of R\+OS. Doing the assignment will be a good way to understand what it is still unclear and catch up with the course.
+\item In the next two weeks, you can contact me even outside class hours for clarifications about the assignment and the course subjects in general. 
+\end{DoxyItemize}

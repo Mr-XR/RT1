@@ -1,0 +1,55 @@
+\hypertarget{randpos__server_8cpp}{}\section{src/my\+\_\+srv/src/randpos\+\_\+server.cpp File Reference}
+\label{randpos__server_8cpp}\index{src/my\+\_\+srv/src/randpos\+\_\+server.\+cpp@{src/my\+\_\+srv/src/randpos\+\_\+server.\+cpp}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}my\+\_\+srv/\+Randpos.\+h\char`\"{}}\\*
+Include dependency graph for randpos\+\_\+server.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{randpos__server_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{randpos__server_8cpp_a10f83119b77a8fbd085a5550955f85ff}{rand\+M\+ToN} (double M, double N)
+\item 
+bool \hyperlink{randpos__server_8cpp_a76e934ac14d6efef64e827323ece1096}{position} (my\+\_\+srv\+::\+Randpos\+::\+Request \&req, my\+\_\+srv\+::\+Randpos\+::\+Response \&res)
+\item 
+int \hyperlink{randpos__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}!main@{main}}
+\index{main@{main}!randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{randpos__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{randpos__server_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+The ros\+::init() function needs to see argc and argv so that it can perform any R\+OS arguments and name remapping that were provided at the command line.
+
+Node\+Handle is the main access point to communications with the R\+OS system.
+
+The service is created and advertised over ros
+
+ros\+::spin() will enter a loop \index{randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}!position@{position}}
+\index{position@{position}!randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{position(my\+\_\+srv\+::\+Randpos\+::\+Request \&req, my\+\_\+srv\+::\+Randpos\+::\+Response \&res)}{position(my_srv::Randpos::Request &req, my_srv::Randpos::Response &res)}}]{\setlength{\rightskip}{0pt plus 5cm}bool position (
+\begin{DoxyParamCaption}
+\item[{my\+\_\+srv\+::\+Randpos\+::\+Request \&}]{req, }
+\item[{my\+\_\+srv\+::\+Randpos\+::\+Response \&}]{res}
+\end{DoxyParamCaption}
+)}\hypertarget{randpos__server_8cpp_a76e934ac14d6efef64e827323ece1096}{}\label{randpos__server_8cpp_a76e934ac14d6efef64e827323ece1096}
+This function provides de service for generating random coordenates by calling the function rand\+M\+ToN to get random coordenates in x and y. It also prints them in the screen \index{randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}!rand\+M\+ToN@{rand\+M\+ToN}}
+\index{rand\+M\+ToN@{rand\+M\+ToN}!randpos\+\_\+server.\+cpp@{randpos\+\_\+server.\+cpp}}
+\subsubsection[{\texorpdfstring{rand\+M\+To\+N(double M, double N)}{randMToN(double M, double N)}}]{\setlength{\rightskip}{0pt plus 5cm}double rand\+M\+ToN (
+\begin{DoxyParamCaption}
+\item[{double}]{M, }
+\item[{double}]{N}
+\end{DoxyParamCaption}
+)}\hypertarget{randpos__server_8cpp_a10f83119b77a8fbd085a5550955f85ff}{}\label{randpos__server_8cpp_a10f83119b77a8fbd085a5550955f85ff}
+This program is conceived to work as a service server that gives back random coordinates between the specified range This function just creates and returns a random number between the minimum and maximum boundaries specified 

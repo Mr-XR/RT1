@@ -1,0 +1,103 @@
+\hypertarget{first_8cpp}{}\section{src/assignment/src/first.cpp File Reference}
+\label{first_8cpp}\index{src/assignment/src/first.\+cpp@{src/assignment/src/first.\+cpp}}
+{\ttfamily \#include \char`\"{}ros/ros.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}geometry\+\_\+msgs/\+Twist.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}nav\+\_\+msgs/\+Odometry.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}my\+\_\+srv/\+Randpos.\+h\char`\"{}}\\*
+Include dependency graph for first.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{first_8cpp__incl}
+\end{center}
+\end{figure}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{first_8cpp_aab6e381bffc34921244a29ec0538ba64}{position\+Callback} (const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)
+\item 
+int \hyperlink{first_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main} (int argc, char $\ast$$\ast$argv)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+ros\+::\+Publisher \hyperlink{first_8cpp_ac050ecd28d14458e8d356e5f6d38a25b}{chatter\+\_\+pub}
+\item 
+ros\+::\+Service\+Client \hyperlink{first_8cpp_a17bcd065930a8a7f9f194078d9977268}{client}
+\item 
+my\+\_\+srv\+::\+Randpos \hyperlink{first_8cpp_a71b52081906c5c95f08fe23019c5dd56}{rec\+\_\+randpos}
+\item 
+float \hyperlink{first_8cpp_a4b312b3530217eb51cbad6e930610f6b}{vel\+\_\+x}
+\item 
+float \hyperlink{first_8cpp_a1dd0876197a1e2dba35d41d6a6d9eab4}{vel\+\_\+y}
+\item 
+float \hyperlink{first_8cpp_a9d466da6de3ce8a6002eeb6ac47204a6}{randpos\+\_\+x}
+\item 
+float \hyperlink{first_8cpp_aad13f1b6016597150e885f101c9ff9f6}{randpos\+\_\+y}
+\item 
+geometry\+\_\+msgs\+::\+Twist \hyperlink{first_8cpp_af111fcabf9f8b38b69faa049d84be60d}{msg\+\_\+sent}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{first.\+cpp@{first.\+cpp}!main@{main}}
+\index{main@{main}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{main(int argc, char $\ast$$\ast$argv)}{main(int argc, char **argv)}}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$$\ast$}]{argv}
+\end{DoxyParamCaption}
+)}\hypertarget{first_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{}\label{first_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}
+The ros\+::init() function needs to see argc and argv so that it can perform any R\+OS arguments and name remapping that were provided at the command line.
+
+Node\+Handle is the main access point to communications with the R\+OS system.
+
+Here the client is created over getting a random position over the /randpos service
+
+Here it is signaled that the program will publish the velocity on the topic /cmd\+\_\+vel
+
+In order to get a first random position and start moving the robot, before the subscribe is made, the random position is requested once. It is the same logic as explained in the end of the callback function
+
+Here you are declaring the subscription to the topic /odom and calling the callback
+
+ros\+::spin() will enter a loop, pumping callbacks. \index{first.\+cpp@{first.\+cpp}!position\+Callback@{position\+Callback}}
+\index{position\+Callback@{position\+Callback}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{position\+Callback(const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&msg)}{positionCallback(const nav_msgs::Odometry::ConstPtr &msg)}}]{\setlength{\rightskip}{0pt plus 5cm}void position\+Callback (
+\begin{DoxyParamCaption}
+\item[{const nav\+\_\+msgs\+::\+Odometry\+::\+Const\+Ptr \&}]{msg}
+\end{DoxyParamCaption}
+)}\hypertarget{first_8cpp_aab6e381bffc34921244a29ec0538ba64}{}\label{first_8cpp_aab6e381bffc34921244a29ec0538ba64}
+Message type twist for the velocity In this callback the actual position of the robot is updated with every loop. This position is compared with the target position and if the target hasn´t been reached beyond the stablished boundaries, the velocity is set. Else, the robot is stopped by setting a velocity of 0 and a new target position is requested. With this, the loop is reestarted
+
+Here the distance/ velocity of the robot is computed for every loop and then printed in the screen. As the specification of the constant k was let to the programmer, in order to do the coding easier it has been defined as 1, like that, both distance and velocity remain equal
+
+In this section of the code, there are 2 kind of \char`\"{}ifs\char`\"{}, the ones concerning the X coordinate and the ones regarding the Y coordinate. With this code, it is verified if the distance between the robot and the target coordinates are outside the boundaries or not, and depending on it the velocity is set with the given formula or is set to 0 respectively. Then the velocity is published for the robot to start moving
+
+In this section of the code, it is verified if the target has been reached, and if so, a new random position is requested (called) sending the maximum and minimum boundaries for the random number, and receiving said number in the variables randpos\+\_\+x and randpos\+\_\+y 
+
+\subsection{Variable Documentation}
+\index{first.\+cpp@{first.\+cpp}!chatter\+\_\+pub@{chatter\+\_\+pub}}
+\index{chatter\+\_\+pub@{chatter\+\_\+pub}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{chatter\+\_\+pub}{chatter_pub}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Publisher chatter\+\_\+pub}\hypertarget{first_8cpp_ac050ecd28d14458e8d356e5f6d38a25b}{}\label{first_8cpp_ac050ecd28d14458e8d356e5f6d38a25b}
+This program receives a random position and controlls the velocity of the robot to reach said target \index{first.\+cpp@{first.\+cpp}!client@{client}}
+\index{client@{client}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{client}{client}}]{\setlength{\rightskip}{0pt plus 5cm}ros\+::\+Service\+Client client}\hypertarget{first_8cpp_a17bcd065930a8a7f9f194078d9977268}{}\label{first_8cpp_a17bcd065930a8a7f9f194078d9977268}
+Publisher for the velocity of the robot \index{first.\+cpp@{first.\+cpp}!msg\+\_\+sent@{msg\+\_\+sent}}
+\index{msg\+\_\+sent@{msg\+\_\+sent}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{msg\+\_\+sent}{msg_sent}}]{\setlength{\rightskip}{0pt plus 5cm}geometry\+\_\+msgs\+::\+Twist msg\+\_\+sent}\hypertarget{first_8cpp_af111fcabf9f8b38b69faa049d84be60d}{}\label{first_8cpp_af111fcabf9f8b38b69faa049d84be60d}
+due to the election of K=1 as velocity constant, vel\+\_\+x and vel\+\_\+y are both the velocity of the robot and the distance with the target; while randpos\+\_\+x and \+\_\+randpos\+\_\+y are the target random positions \index{first.\+cpp@{first.\+cpp}!randpos\+\_\+x@{randpos\+\_\+x}}
+\index{randpos\+\_\+x@{randpos\+\_\+x}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{randpos\+\_\+x}{randpos_x}}]{\setlength{\rightskip}{0pt plus 5cm}float randpos\+\_\+x}\hypertarget{first_8cpp_a9d466da6de3ce8a6002eeb6ac47204a6}{}\label{first_8cpp_a9d466da6de3ce8a6002eeb6ac47204a6}
+\index{first.\+cpp@{first.\+cpp}!randpos\+\_\+y@{randpos\+\_\+y}}
+\index{randpos\+\_\+y@{randpos\+\_\+y}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{randpos\+\_\+y}{randpos_y}}]{\setlength{\rightskip}{0pt plus 5cm}float randpos\+\_\+y}\hypertarget{first_8cpp_aad13f1b6016597150e885f101c9ff9f6}{}\label{first_8cpp_aad13f1b6016597150e885f101c9ff9f6}
+\index{first.\+cpp@{first.\+cpp}!rec\+\_\+randpos@{rec\+\_\+randpos}}
+\index{rec\+\_\+randpos@{rec\+\_\+randpos}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{rec\+\_\+randpos}{rec_randpos}}]{\setlength{\rightskip}{0pt plus 5cm}my\+\_\+srv\+::\+Randpos rec\+\_\+randpos}\hypertarget{first_8cpp_a71b52081906c5c95f08fe23019c5dd56}{}\label{first_8cpp_a71b52081906c5c95f08fe23019c5dd56}
+Client for receiving the random targer \index{first.\+cpp@{first.\+cpp}!vel\+\_\+x@{vel\+\_\+x}}
+\index{vel\+\_\+x@{vel\+\_\+x}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{vel\+\_\+x}{vel_x}}]{\setlength{\rightskip}{0pt plus 5cm}float vel\+\_\+x}\hypertarget{first_8cpp_a4b312b3530217eb51cbad6e930610f6b}{}\label{first_8cpp_a4b312b3530217eb51cbad6e930610f6b}
+Message type received from the server \index{first.\+cpp@{first.\+cpp}!vel\+\_\+y@{vel\+\_\+y}}
+\index{vel\+\_\+y@{vel\+\_\+y}!first.\+cpp@{first.\+cpp}}
+\subsubsection[{\texorpdfstring{vel\+\_\+y}{vel_y}}]{\setlength{\rightskip}{0pt plus 5cm}float vel\+\_\+y}\hypertarget{first_8cpp_a1dd0876197a1e2dba35d41d6a6d9eab4}{}\label{first_8cpp_a1dd0876197a1e2dba35d41d6a6d9eab4}
