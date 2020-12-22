@@ -1,6 +1,6 @@
 # Research track 1: First Assignment
 This code aims to control a simulated robot using ROS. The robot should autonomously reach a target between the coordinates (6,-6) in both 
-x and y axis. The project uses two nodes, the one coded in the file **first.cpp** (also known as /mover in the folder src/assignment/src) that properly controlls the robot and makes it reach the target, and the server coded in the file **Radndpos_server.cpp** (in the folder /src/my_srv/src) that uses the messages of **randpos.srv** to send a random position for the robot to reach.
+x and y axis. The project uses two nodes, the one coded in the file **first.cpp** (also known as "/mover", which is in the folder src/assignment/src) that properly controlls the robot and makes it reach the target, and the server coded in the file **Radndpos_server.cpp** (in the folder /src/my_srv/src) that uses the messages of **randpos.srv** to send a random position for the robot to reach.
 
 ## Running the code
 In order to properly run the code, one should open 3 shells and through the command cd reach the workspace folder where the files of this git repository are located. Before that, one should as well run the command "roscore &" to start using ROS. In the workspace folder, the 
